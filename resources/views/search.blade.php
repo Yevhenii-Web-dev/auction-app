@@ -17,7 +17,9 @@
         </div>
     @endif
     <div class="flex justify-end mb-10">
-        <a href="{{ route('lots.create') }}" class="focus:outline-none text-white bg-green-800 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-800 dark:hover:bg-green-900 dark:focus:ring-green-800">Add New Lot </a>
+        <a href="{{ route('lots.create') }}"
+           class="focus:outline-none text-white bg-green-800 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-800 dark:hover:bg-green-900 dark:focus:ring-green-800">Add
+            New Lot </a>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mb-10">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
@@ -56,17 +58,22 @@
                     <td class="px-6 py-4">
                         @foreach($lot->categories as $category)
                             <span
-                                class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $category->name }}</span>
+                                class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 inline-block mb-2 rounded dark:bg-green-900 dark:text-green-300">{{ $category->name }}</span>
                         @endforeach
                     </td>
 
                     <td class="px-6 py-4 text-right flex gap-4">
-                        <a href="{{ route('lots.show', [$lot->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
-                        <a href="{{ route('lots.edit', [$lot->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <form method="POST" action="{{ route('lots.destroy',[$lot->id]) }}" onsubmit="return confirm( 'Are you sure ?' ); ">
+                        <a href="{{ route('lots.show', [$lot->id]) }}"
+                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ __('View') }}</a>
+                        <a href="{{ route('lots.edit', [$lot->id]) }}"
+                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ __('Edit') }}</a>
+                        <form method="POST" action="{{ route('lots.destroy',[$lot->id]) }}"
+                              onsubmit="return confirm( 'Are you sure ?' ); ">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+                            <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                                {{ __('Delete') }}
+                            </button>
                         </form>
                     </td>
                 </tr>
@@ -78,6 +85,7 @@
     </div>
 
     <div class="flex justify-center">
-        {{ $lots->links('vendor.pagination.tailwind-two') }}
+                {{ $lots->links('vendor.pagination.tailwind-two') }}
     </div>
+
 @endsection

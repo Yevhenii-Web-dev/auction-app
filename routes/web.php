@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::resource('/lots', LotController::class);
 Route::resource('/categories', CategoryController::class);
+
+Route::get('/search', [LotController::class, 'searchByCategory'])->name('lots.search');
 
 Route::view('/', 'welcome')->name('welcome');
 Route::view('/home', 'home')->name('home');

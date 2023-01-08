@@ -1,11 +1,10 @@
 <footer
     class=" footer bg-white rounded-lg shadow sm:flex sm:items-center sm:justify-between p-4 sm:p-6 xl:p-8 dark:bg-gray-800">
     <p class="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0">
-        &copy; 2022-2023 <a href="https://flowbite.com/" class="hover:underline" target="_blank">Flowbite.com</a>. All
-        rights reserved.
+        &copy; 2022-2023  {{ __('All rights reserved.') }}
     </p>
     <div class="flex justify-center items-center space-x-1">
-        <a href="#" data-tooltip-target="tooltip-twitter"
+        <a href="https://twitter.com/SmereKa_web" target="_blank" data-tooltip-target="tooltip-twitter"
            class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -18,7 +17,7 @@
             Follow us on Twitter
             <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
-        <a href="#" data-tooltip-target="tooltip-github"
+        <a href="https://github.com/Yevhenii-Web-dev" target="_blank" data-tooltip-target="tooltip-github"
            class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path fill-rule="evenodd"

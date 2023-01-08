@@ -21,35 +21,16 @@
         </div>
     @endif
     <h2 class="mb-4 text-center text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
-        {{ __('Create New Lot') }} </h2>
-    <form action="{{ route('lots.store') }}" method="POST" onsubmit="return confirm( 'Are you sure ?' );">
+        {{ __('Create New Category') }} </h2>
+    <form action="{{ route('categories.store') }}" method="POST" onsubmit="return confirm( 'Are you sure ?' );">
         @csrf
         <div class="mb-6">
             <label for="name"
-                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Lot Name') }}</label>
+                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Category Name') }}</label>
             <input type="text" id="name" name="name" value="{{ old('name') }}"
                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   placeholder="{{ __('Write name for new lot') }}">
+                   placeholder="{{ __('Write name for new category') }}">
         </div>
-        <div class="mb-6">
-
-            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Lot
-                Description') }} </label>
-            <textarea id="description" rows="4" name="description" placeholder="{{ __('Write description for new lot') }} "
-                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ old('description') }}</textarea>
-        </div>
-        <div class="mb-6">
-            <label for="categories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Multiply Select For Category (press CTRL or SHIFT)') }} </label>
-            <select id="categories" size="5" multiple name="category[]"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                @foreach($categories as $category)
-                    <option
-                        @selected(collect(old('category'))->contains($category->id)) value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-
-        </div>
-
         <div class="flex gap-4">
             <a href="{{ url()->previous() }}"
                class="text-white bg-purple-700 hover:bg-purple-900 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-800 dark:hover:bg-purple-700 dark:focus:ring-purple-800">

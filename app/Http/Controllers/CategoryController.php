@@ -2,83 +2,74 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategorytRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Category;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(): View
     {
-        //
+        $categories = Category::with('lots')->paginate(5);
+
+        Session::put('categories_url', request()->fullUrl());
+
+        return view('categories.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(StoreCategorytRequest $request): RedirectResponse
     {
-        //
+        Category::create($request->validated());
+
+        if (session('categories_url')) {
+            return redirect(session('categories_url'))->with('status', 'Category added successfully !!!');
+        }
+
+        return to_route('categories.index')->with('status', 'Category added successfully !!!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Category $category): View
     {
-        //
+        return view('categories.show', compact('category'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->validated());
+
+        if (session('categories_url')) {
+            return redirect(session('categories_url'))->with('status', 'Category updated successfully !!!');
+        }
+
+        return to_route('categories.index', $category->id)->with('status', 'Category updated successfully !!!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function destroy(Category $category)
     {
-        //
+        $category->lots()->detach();
+        $category->delete();
+
+        if (session('categories_url')) {
+            return redirect(session('categories_url'))->with('status', 'Category deleted successfully !!!');
+        }
+
+        return to_route('categories.index')->with('status', 'Category deleted successfully !!!');
     }
 }

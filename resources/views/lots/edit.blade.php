@@ -21,13 +21,14 @@
         </div>
     @endif
     <h2 class="mb-4 text-center text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
-        {{ __('Create New Lot') }} </h2>
-    <form action="{{ route('lots.store') }}" method="POST" onsubmit="return confirm( 'Are you sure ?' );">
+        {{ __('Edit Lot') }} "{{ $lot->name  }}" </h2>
+    <form action="{{ route('lots.update', $lot->id) }}" method="POST" onsubmit="return confirm( 'Are you sure ?'); " >
         @csrf
+        @method('PATCH')
         <div class="mb-6">
             <label for="name"
                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Lot Name') }}</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}"
+            <input type="text" id="name" name="name" value="{{ $lot->name }}"
                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="{{ __('Write name for new lot') }}">
         </div>
@@ -36,7 +37,7 @@
             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Lot
                 Description') }} </label>
             <textarea id="description" rows="4" name="description" placeholder="{{ __('Write description for new lot') }} "
-                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ old('description') }}</textarea>
+                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $lot->description }}</textarea>
         </div>
         <div class="mb-6">
             <label for="categories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Multiply Select For Category (press CTRL or SHIFT)') }} </label>
@@ -44,7 +45,7 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @foreach($categories as $category)
                     <option
-                        @selected(collect(old('category'))->contains($category->id)) value="{{ $category->id }}">{{ $category->name }}</option>
+                        @selected($lot->categories->contains($category->id)) value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
 
