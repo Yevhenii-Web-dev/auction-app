@@ -15,6 +15,6 @@ It is a simple app for manage lots. You have CRUD for lots ,categories and searc
 - Then you must clone this repo **https://github.com/Yevhenii-Web-dev/auction-app.git**
 - Next step need make copy .env.example file and add new file .env 
 - In file .env setup DB connect to your privet DB (mySql)
-- After that in main directory project add commands in terminal [' composer i ' ,' npm i ', ' php artisan key:generate ', ' php artisan serve ' ' npm run dev ')]
+- After that in main directory project add commands in terminal [' composer i ' ,' npm i ', ' php artisan key:generate ', 'php artisan migrate', ' php artisan serve ', ' npm run dev ')]
 - And that all, if all steps are made, app will be work
 
